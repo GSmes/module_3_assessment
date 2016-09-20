@@ -1,5 +1,9 @@
 class SearchController < ApplicationController
   def index
-    @results = Store.find(params[:zip])
+    @stores = Store.find_all(params[:zip])
+  end
+
+  def show
+    @store = Store.find(params[:id])
   end
 end

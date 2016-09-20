@@ -11,8 +11,18 @@ class BestBuyService
       req.params['show']     = 'longName,city,distance,phone,storeType,storeId'
       req.params['pageSize'] = '15'
     end
-    pr = parse(response)
-    binding.pry
+    parse(response)['stores']
+  end
+
+  def find_store(id)
+    response = connection.get do |req|
+      req.url "v1/stores"
+      req.params['format']   = 'json'
+      req.params['apiKey']   = ENV['BEST_BUY_API_KEY']
+      req.params['storeId']  = id
+      req.params['show']     = 'storeId,storeType,longName,city,phone,distance,hoursAmPm,region,postalCode'
+    end
+    parse(response)['stores']
   end
 
   private
