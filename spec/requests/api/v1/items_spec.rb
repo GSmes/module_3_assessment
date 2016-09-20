@@ -63,6 +63,7 @@ RSpec.describe 'Items Endpoint', :type => :request do
 
     new_item = JSON.parse(response.body)
 
+    expect(new_item['id']).to eq(1)
     expect(new_item['name']).to eq('Gameboy')
     expect(new_item['description']).to eq('It is a Gameboy')
     expect(new_item['image_url']).to eq('http://www.url.com')
